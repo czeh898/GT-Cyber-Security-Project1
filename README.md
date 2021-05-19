@@ -31,7 +31,7 @@ Load balancing ensures that the application will be highly available, in additio
 - _TODO: What aspect of security do load balancers protect? 
 Load balancers defend against denial of service attacks. 
 
-What is the advantage of a jump box? Jump boxes improve a companyís network security by having a secure central location that must be connected to first before launching any tasks.
+What is the advantage of a jump box? Jump boxes improve a company‚Äôs network security by having a secure central location that must be connected to first before launching any tasks.
  
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the files and system metrics.
 - _TODO: What does Filebeat watch for?_Filebeat monitors log files to collect log events. Information is then forwarded to either Logstash or Elasticsearch to be indexed.
@@ -43,11 +43,11 @@ The configuration details of each machine may be found below.
 
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
-| Jones Box| Gateway  | 10.0.0.4   | Linux            |
-| Web4     | ELKServer| 10.3.0.4   | Linux            |
-| Web1     | Webserver| 10.0.0.10  | Linux  		   |
-| Web2     | Webserver| 10.0.0.11  | Linux            |
-| Web3     | Webserver| 10.0.0.5   | Linux            |
+| OffSec-JB| Gateway  | 10.1.0.4   | Linux            |
+| Web4     | ELKServer| 10.1.0.8   | Linux            |
+| Web1     | Webserver| 10.1.0.5  | Linux  		        |
+| Web2     | Webserver| 10.1.0.6  | Linux             |
+| Web3     | Webserver| 10.1.0.7   | Linux            |
 
 
 
@@ -55,9 +55,9 @@ The configuration details of each machine may be found below.
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the Jones Box machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses: My public IP
+Only the OffSec-JumpBox machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses: My public IP
 
-Machines within the network can only be accessed by Jumpbox IP 10.0.0.4.
+Machines within the network can only be accessed by Jumpbox IP 10.1.0.4.
 
 
 A summary of the access policies in place can be found in the table below.
@@ -66,7 +66,7 @@ A summary of the access policies in place can be found in the table below.
 |----------|---------------------|----------------------|
 | Jump Box | No	                | My Public IP        |
 | ElkServer| Yes(port 5601 only) | Internet             |
-| Web1     | Yes                 | Via LoadBalancer 13.90.36.91|
+| Web1     | Yes                 | Via LoadBalancer 20.96.120.142 (OffSecLB)|
 
 ### Elk Configuration
 
@@ -85,8 +85,8 @@ The playbook implements the following tasks:
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- Web1 10.0.0.10 Web2 10.0.11; Web3 10.0.05
-USE YOUR IPís
+- Web1 10.1.0.5 Web2 10.1.0.6; Web3 10.1.0.7
+USE YOUR IP‚Äôs
 We have installed the following Beats on these machines:
 - Filebeat
 - Metricbeat
@@ -103,16 +103,16 @@ In order to use the playbook, you will need to have an Ansible control node alre
 SSH into the control node and follow the steps below:
 - Copy the install-elk.yml file to Ansible container folder /etc/ansible/files/.
 
-- Update the hosts file to include the Elk Server IP address of 10.3.0.4    under elkservers
+- Update the hosts file to include the Elk Server IP address of 10.1.0.8   under elkservers
 
-- Run the playbook, ansible-playbook elk-playbook.yml /etc/ansible/http://52.149.38.49/:5601 to check that Kibana is running. 
+- Run the playbook, ansible-playbook elk-playbook.yml /etc/ansible/http://ELKIPAddress/:5601 to check that Kibana is running. 
 
 
 Answer the following questions to fill in the blanks:_
 -Which file is the playbook in? Where do you copy it?
 - :/etc/ansible/elk-playbook.yml. You copy it to the directory. 
 
-- _Which file do you update to make Ansible run the playbook on a specific machine? You update the hosts file. How do I specify which machine to install the ELK server on versus which to install Filebeat on? Add the private IP under ìserversî
+- _Which file do you update to make Ansible run the playbook on a specific machine? You update the hosts file. How do I specify which machine to install the ELK server on versus which to install Filebeat on? Add the private IP under ‚Äúservers‚Äù
 
-- _Which URL do you navigate to in order to check that the ELK server is running? 52.149.38.49:5601
+- _Which URL do you navigate to in order to check that the ELK server is running? ELKIPAddress:5601
 
