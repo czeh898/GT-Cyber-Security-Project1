@@ -101,11 +101,12 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the install-elk.yml file to Ansible container folder /etc/ansible/files/.
+- Copy the install-elk.yml file to Ansible container folder /etc/ansible.
 
 - Update the hosts file to include the Elk Server IP address of 10.1.0.8   under elkservers
 
-- Run the playbook, ansible-playbook elk-playbook.yml /etc/ansible/http://ELKIPAddress/:5601 to check that Kibana is running. 
+- Run the playbook, ansible-playbook elk-playbook.yml /etc/ansible/
+- http://ELKIPAddress/:5601 to check that Kibana is running. 
 
 
 Answer the following questions to fill in the blanks:_
