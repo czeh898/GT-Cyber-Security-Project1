@@ -44,10 +44,10 @@ The configuration details of each machine may be found below.
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
 | OffSec-JB| Gateway  | 10.1.0.4   | Linux            |
-| Web4     | ELKServer| 10.1.0.8   | Linux            |
-| Web1     | Webserver| 10.1.0.5  | Linux  		        |
-| Web2     | Webserver| 10.1.0.6  | Linux             |
-| Web3     | Webserver| 10.1.0.7   | Linux            |
+| OffSecELK| ELKServer| 10.2.0.4   | Linux            |
+| OffSecWeb1| Webserver| 10.1.0.5  | Linux  		      |
+| OffSecWeb2| Webserver| 10.1.0.6  | Linux            |
+| OffSecWeb3| Webserver| 10.1.0.7  | Linux           |
 
 
 
@@ -66,7 +66,7 @@ A summary of the access policies in place can be found in the table below.
 |----------|---------------------|----------------------|
 | Jump Box | No	                | My Public IP        |
 | ElkServer| Yes(port 5601 only) | Internet             |
-| Web1     | Yes                 | Via LoadBalancer 20.96.120.142 (OffSecLB)|
+| OffSecWeb1| Yes                 | Via LoadBalancer 20.96.120.142 (OffSecLB)|
 
 ### Elk Configuration
 
@@ -103,9 +103,9 @@ In order to use the playbook, you will need to have an Ansible control node alre
 SSH into the control node and follow the steps below:
 - Copy the install-elk.yml file to Ansible container folder /etc/ansible.
 
-- Update the hosts file to include the Elk Server IP address of 10.1.0.8   under elkservers
+- Update the hosts file to include the Elk Server IP address of 10.2.0.4   under elkservers
 
-- Run the playbook, ansible-playbook elk-playbook.yml /etc/ansible/http://ELKIPAddress/:5601 to check that Kibana is running. 
+- Run the playbook, ansible-playbook elk-playbook.yml /etc/ansible/http://[ELKPublicIPAddress]/:5601 to check that Kibana is running. 
 
 
 Answer the following questions to fill in the blanks:_
@@ -114,6 +114,6 @@ Answer the following questions to fill in the blanks:_
 
 - _Which file do you update to make Ansible run the playbook on a specific machine? You update the hosts file. How do I specify which machine to install the ELK server on versus which to install Filebeat on? Add the private IP under “servers”
 
-- _Which URL do you navigate to in order to check that the ELK server is running? ELKIPAddress:5601
+- _Which URL do you navigate to in order to check that the ELK server is running? ELKPublicIPAddress:5601
 
 
