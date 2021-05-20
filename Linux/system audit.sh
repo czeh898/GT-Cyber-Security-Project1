@@ -17,4 +17,4 @@ echo >> $output
 echo "Machine type info"
 echo $MACHTYPE
 echo -e "Uname info: $(uname -a) /n"
-echo -e "IP info: $(ip addr | head -9 | tail -1) /n"
+echo -e "IP info: $(ip addr | head -9 | tail -1) /n
